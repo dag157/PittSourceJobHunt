@@ -11,7 +11,7 @@ from selenium.webdriver.common.keys import Keys
 
 
 def main():
-    chromedriver = "/Users/dominick/desktop/side projects/PittSourceJobHunt/chromedriver"
+    chromedriver = os.getcwd()+"/chromedriver"
     os.environ["webdriver.chrome.driver"] = chromedriver
     driver = webdriver.Chrome(chromedriver)
     driver.get("https://cfopitt.taleo.net/careersection/pitt_student_int/jobsearch.ftl?lang=en&portal=18200023232#")
