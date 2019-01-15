@@ -59,6 +59,8 @@ def main():
     print(ul)
     
     for li_tag in ul.find_all('tr'):
+        if li_tag.get("id") == None:
+            continue
         print(li_tag.get("id"))
     
     #print(soup)
