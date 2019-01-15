@@ -1,3 +1,4 @@
+import time
 import requests
 import os
 from bs4 import BeautifulSoup
@@ -21,12 +22,15 @@ def main():
 
     username.clear()
     password.clear()
-
+    #driver.implicitly_wait(20)
+    time.sleep(20)
     #
     #
     # ENTER USERNAME AND PASSWORD HERE
     #
     #
+    '''
+    We can figure this out later, couldn't test main functionality so I just put in a 20 second time delay for now.
 
     username.send_keys("")
     password.send_keys("")
@@ -39,10 +43,26 @@ def main():
     select.select_by_value('phone2')
 
     #pause(20000)
-
+    '''
     response = requests.get("https://cfopitt.taleo.net/careersection/pitt_student_int/jobsearch.ftl?lang=en&portal=18200023232#")
-    soup = BeautifulSoup(response.text, features="html.parser")
-    print(soup)
+    keyword = driver.find_element_by_id("KEYWORD")
+    keyword.clear()
+    keyword.send_keys("Programmer")
+    time.sleep(1)
+    driver.find_element_by_id("search").click()
+    time.sleep(1)
+    soup = BeautifulSoup(driver.page_source.encode("utf-8"), features="html.parser")
+    
+    time.sleep(1)
+    ul = soup.find('table', {'id': 'jobs'})
+    time.sleep(1)
+    print(ul)
+    
+    for li_tag in ul.find_all('tr'):
+        print(li_tag.get("id"))
+    
+    #print(soup)
+ 
     #driver.quit()
 
 
